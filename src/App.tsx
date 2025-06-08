@@ -1,12 +1,11 @@
+import ConnectionStatus from './components/ConnectionStatus';
+
 export default function App() {
   return (
     <>
-      <p
-        className='
-  bg-red-500'
-      >
-        dsadsa
-      </p>
+      <p>dsadas</p>
+      <h1>dsadsad</h1>
+      <ConnectionStatus />
     </>
   );
 }
