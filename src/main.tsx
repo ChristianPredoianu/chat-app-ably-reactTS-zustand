@@ -4,9 +4,8 @@ import * as Ably from 'ably';
 import { ChatClient, LogLevel } from '@ably/chat';
 import { ChatClientProvider } from '@ably/chat/react';
 import { AblyProvider } from 'ably/react';
-import App from './App'; // Your main app component
+import App from './App';
 
-// Create your Ably Realtime client and ChatClient instances:
 const realtimeClient = new Ably.Realtime({
   key: import.meta.env.VITE_ABLY_API_KEY,
   clientId: 'my-first-client',
