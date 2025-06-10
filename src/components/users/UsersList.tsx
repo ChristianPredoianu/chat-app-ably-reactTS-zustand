@@ -1,4 +1,4 @@
-import UsersListItem from './UsersListItem';
+import UsersListItem from '@components/users/UsersListItem';
 
 type UsersListProps = {
   users: string[];
