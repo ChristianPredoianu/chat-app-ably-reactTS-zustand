@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import ConnectionStatus from './components/ConnectionStatus';
-import RoomStatus from './components/RoomStatus';
-import ChatBox from './components/ChatBox';
-import UsersList from './components/users/UsersList';
+import ConnectionStatus from '@/components/ConnectionStatus';
+import RoomStatus from '@/components/RoomStatus';
+import ChatBox from '@/components/ChatBox';
+import UsersList from '@/components/users/UsersList';
 import { ChatRoomProvider } from '@ably/chat/react';
 
 const currentUserId = 'my-first-client';
