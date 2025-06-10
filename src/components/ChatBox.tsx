@@ -35,7 +35,7 @@ export default function ChatBox({ currentUserId }: ChatBoxProps) {
           const isMine = msg.clientId === currentUserId;
           return (
             <div
-              key={msg.id || msg.timestamp.toString()} // fallback key
+              key={`${msg.clientId}-${msg.timestamp}`} // fallback key
               className={`max-w-[60%] rounded-2xl px-3 py-2 shadow-sm ${
                 isMine
                   ? 'bg-green-200 text-gray-800 rounded-br-none ml-auto'
