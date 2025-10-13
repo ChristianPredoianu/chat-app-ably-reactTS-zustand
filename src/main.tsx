@@ -7,7 +7,7 @@ import '@/index.css';
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
-      <div className='min-h-screen bg-gray-200'>
+      <div className='min-h-screen bg-neutral-100'>
         <App />
       </div>
     </BrowserRouter>
