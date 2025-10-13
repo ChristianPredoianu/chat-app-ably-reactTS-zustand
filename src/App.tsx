@@ -1,3 +1,12 @@
+import { Routes, Route } from 'react-router-dom';
+import LoginPage from '@/components/pages/LoginPage';
+import ChatPage from '@/components/pages/ChatPage';
+
 export default function App() {
-  return <h1>Hello World</h1>;
+  return (
+    <Routes>
+      <Route path='/' element={<LoginPage />} />
+      <Route path='/chat/:userId' element={<ChatPage />} />
+    </Routes>
+  );
 }
