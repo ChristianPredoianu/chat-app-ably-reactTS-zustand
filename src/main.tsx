@@ -4,6 +4,7 @@ import * as Ably from 'ably';
 import { ChatClient, LogLevel } from '@ably/chat';
 import { ChatClientProvider } from '@ably/chat/react';
 import { AblyProvider } from 'ably/react';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 
 const realtimeClient = new Ably.Realtime({
@@ -19,7 +20,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <AblyProvider client={realtimeClient}>
       <ChatClientProvider client={chatClient}>
-        <App />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </ChatClientProvider>
     </AblyProvider>
   </React.StrictMode>
