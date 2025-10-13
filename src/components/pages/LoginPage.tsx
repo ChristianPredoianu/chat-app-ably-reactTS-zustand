@@ -1,3 +1,7 @@
 export default function LoginPage() {
-  return <h1>Hello Login</h1>;
+  return (
+    <div className=''>
+      <h1 className='text-red-500'>Login Page</h1>
+    </div>
+  );
 }
