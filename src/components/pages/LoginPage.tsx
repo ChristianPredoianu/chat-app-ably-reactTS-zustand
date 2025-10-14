@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import SignInForm from '@/components/forms/SignInForm';
 import SignUpForm from '@/components/forms/SignUpForm';
+import FormButton from '@/components/buttons/FormButton';
 import { IoChatbubbleEllipsesOutline } from 'react-icons/io5';
 
 export default function LoginPage() {
@@ -31,7 +32,7 @@ export default function LoginPage() {
             ? 'Don’t have an account?'
             : 'Already have an account?'}
           <span className='text-blue-400' onClick={toggleForm}>
-            {activeForm === 'signIn' ? 'Sign Up' : 'Sign In'}
+            {activeForm === 'signIn' ? ' Sign Up' : ' Sign In'}
           </span>
         </p>
       </div>
