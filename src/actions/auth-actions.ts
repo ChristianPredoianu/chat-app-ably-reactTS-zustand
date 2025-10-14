@@ -2,10 +2,7 @@ import type { SignInState } from '@/types/auth';
 import { validateSignInForm } from '@/utils/validation';
 
 // Action function that handles form submission
-export async function signInAction(
-  prevState: SignInState | null,
-  formData: FormData
-): Promise<SignInState> {
+export async function signInAction(formData: FormData): Promise<SignInState> {
   // Extract form data
   const email = formData.get('email') as string;
   const password = formData.get('password') as string;
