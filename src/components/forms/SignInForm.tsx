@@ -1,54 +1,11 @@
-import { useActionState, useState } from 'react';
 import TextInput from '@/components/forms/TextInput';
 import PasswordInput from '@/components/forms/PasswordInput';
 import FormButton from '@/components/buttons/FormButton';
-import type { SignInState } from '@/types/auth';
-
-// Action function that handles form submission
-async function signInAction(
-  prevState: SignInState | null,
-  formData: FormData
-): Promise<SignInState> {
-  // Extract form data
-  const email = formData.get('email') as string;
-  const password = formData.get('password') as string;
-
-  // Validate inputs
-  if (!email || !password) {
-    return { error: 'Email and password are required' };
-  }
-
-  if (!email.includes('@')) {
-    return { error: 'Please enter a valid email address' };
-  }
-
-  try {
-    // Your sign-in logic here (API call, authentication, etc.)
-    // Example:
-    // const response = await fetch('/api/auth/signin', {
-    //   method: 'POST',
-    //   body: formData,
-    // });
-
-    // if (!response.ok) {
-    //   return { error: 'Invalid credentials' };
-    // }
-
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    // On success
-    return { success: true, message: 'Signed in successfully!' };
-  } catch (error) {
-    return { error: 'Something went wrong. Please try again.' };
-  }
-}
+import { useSignInForm } from '@/hooks/useSignInForm';
 
 export default function SignInForm() {
-  // Use useActionState to manage form state
-  const [state, formAction, isPending] = useActionState(signInAction, null);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const { state, formAction, isPending, email, setEmail, password, setPassword } =
+    useSignInForm();
 
   return (
     <form action={formAction} className='flex flex-col gap-4' noValidate>
@@ -60,7 +17,15 @@ export default function SignInForm() {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
+        aria-invalid={!!state?.fieldErrors?.email}
+        aria-describedby={state?.fieldErrors?.email ? 'email-error' : undefined}
       />
+
+      {state?.fieldErrors?.email && (
+        <div id='email-error' className='text-red-500 text-sm -mt-2'>
+          {state.fieldErrors.email}
+        </div>
+      )}
       <PasswordInput
         label='Password'
         name='password'
@@ -68,16 +33,25 @@ export default function SignInForm() {
         required
         value={password}
         onChange={(e) => setPassword(e.target.value)}
+        aria-invalid={!!state?.fieldErrors?.password}
+        aria-describedby={state?.fieldErrors?.password ? 'password-error' : undefined}
       />
 
       {/* Display error or success messages */}
-      {state?.error && (
+      {state?.fieldErrors?.password && (
+        <div id='password-error' className='text-red-500 text-sm -mt-2'>
+          {state.fieldErrors.password}
+        </div>
+      )}
+
+      {/* General error message */}
+      {state?.error && !state?.fieldErrors && (
         <div className='text-red-500 text-sm text-center'>{state.error}</div>
       )}
+
       {state?.success && (
         <div className='text-green-500 text-sm text-center'>{state.message}</div>
       )}
-
       <span className='text-center py-4 text-blue-400 text-sm'>Forgot Password?</span>
 
       {/* Disable button when pending */}
