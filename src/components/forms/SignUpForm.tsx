@@ -1,7 +1,7 @@
 import TextInput from '@/components/forms/TextInput';
 import PasswordInput from '@/components/forms/PasswordInput';
 import FormButton from '@/components/buttons/FormButton';
-import { useSignUpForm } from '@/hooks/useSignUpForm';
+import { useSignUpForm } from '@/hooks/forms/useSignUpForm';
 
 export default function SignUpForm() {
   const {
