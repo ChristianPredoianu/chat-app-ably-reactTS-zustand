@@ -6,7 +6,7 @@ export default function App() {
   return (
     <Routes>
       <Route path='/' element={<LoginPage />} />
-      <Route path='/chat/:userId' element={<DashboardPage />} />
+      <Route path='/dashboard/:userId' element={<DashboardPage />} />
     </Routes>
   );
 }
