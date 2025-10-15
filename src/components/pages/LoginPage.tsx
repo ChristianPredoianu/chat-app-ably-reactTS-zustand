@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import SignInForm from '@/components/forms/SignInForm';
 import SignUpForm from '@/components/forms/SignUpForm';
-import { IoChatbubbleEllipsesOutline } from 'react-icons/io5';
+import AppLogo from '@/components/ui/AppLogo';
 
 export default function LoginPage() {
   const [activeForm, setActiveForm] = useState<'signIn' | 'signUp'>('signIn');
@@ -17,10 +17,7 @@ export default function LoginPage() {
 
   return (
     <main className='container mx-auto px-6 min-h-screen flex flex-col justify-between py-10'>
-      <div className='flex flex-col items-center justify-start gap-2 '>
-        <IoChatbubbleEllipsesOutline className='text-blue-500' size={40} />
-        <h1 className='text-xl font-medium'>ChatApp</h1>
-      </div>
+      <AppLogo />
       <h2 className='text-2xl font-bold text-center -mt-10'>
         {activeForm === 'signIn' ? 'Welcome Back!' : 'Create Account'}
       </h2>
