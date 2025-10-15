@@ -1,7 +1,7 @@
 import TextInput from '@/components/forms/TextInput';
 import PasswordInput from '@/components/forms/PasswordInput';
 import FormButton from '@/components/buttons/FormButton';
-import { useSignInForm } from '@/hooks/useSignInForm';
+import { useSignInForm } from '@/hooks/forms/useSignInForm';
 
 export default function SignInForm() {
   const { state, formAction, isPending, email, setEmail, password, setPassword } =
