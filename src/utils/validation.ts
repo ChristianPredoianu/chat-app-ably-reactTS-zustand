@@ -1,4 +1,4 @@
-import type { FieldErrors } from '@/types/auth';
+import type { FieldErrors, SignUpFieldErrors } from '@/types/auth';
 
 export function validateEmail(email: string): string | undefined {
   if (!email?.trim()) return 'Email is required';
@@ -37,3 +37,39 @@ export function validateSignInForm(
 
   return { fieldErrors, isValid };
 }
+
+function validateEmailConfirmation(
+  email: string,
+  confirmEmail: string
+): string | undefined {
+  if (!confirmEmail) return 'Please confirm your email';
+  if (email !== confirmEmail) return 'Emails do not match';
+  return undefined;
+}
+
+function validatePasswordConfirmation(
+  password: string,
+  confirmPassword: string
+): string | undefined {
+  if (!confirmPassword) return 'Please confirm your password';
+  if (password !== confirmPassword) return 'Passwords do not match';
+  return undefined;
+}
+
+export const validateSignUpForm = (
+  email: string,
+  confirmEmail: string,
+  password: string,
+  confirmPassword: string
+): { fieldErrors: SignUpFieldErrors; isValid: boolean } => {
+  const fieldErrors: SignUpFieldErrors = {
+    email: validateEmail(email),
+    password: validatePassword(password),
+    confirmEmail: validateEmailConfirmation(email, confirmEmail),
+    confirmPassword: validatePasswordConfirmation(password, confirmPassword),
+  };
+
+  const isValid = Object.values(fieldErrors).every((error) => error === undefined);
+
+  return { fieldErrors, isValid };
+};
