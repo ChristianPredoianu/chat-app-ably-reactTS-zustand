@@ -1,8 +1,11 @@
 import { useActionState, useState } from 'react';
 import { signInAction } from '@/actions/auth-actions';
+import type { SignInState } from '@/types/auth';
 
 export function useSignInForm() {
-  const [state, formAction, isPending] = useActionState(signInAction, null);
+  const initialState: SignInState = {};
+
+  const [state, formAction, isPending] = useActionState(signInAction, initialState);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
