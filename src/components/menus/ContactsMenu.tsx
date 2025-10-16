@@ -24,7 +24,7 @@ export default function ContactsMenu({ isOpen, onClose }: ContactsMenuProps) {
   return (
     <>
       <Overlay isVisible={isOpen} onClick={onClose} />
-      <div
+      <aside
         ref={menuRef}
         className={`fixed inset-y-0 left-0 z-50 transform transition-all duration-300 ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
@@ -37,7 +37,7 @@ export default function ContactsMenu({ isOpen, onClose }: ContactsMenuProps) {
         >
           Close
         </button>
-      </div>
+      </aside>
     </>
   );
 }
