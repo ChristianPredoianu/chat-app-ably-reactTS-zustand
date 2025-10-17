@@ -1,9 +1,12 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import useBodyScrollLock from '@/hooks/ui/useBodyScrollLock';
 import useEscapeKey from '@/hooks/ui/useEscapeKey';
 import useInert from '@/hooks/ui/useInert';
 import SearchInput from '@/components/ui/SearchInput';
+import ContactsList from '@components/lists/ContactList';
 import Overlay from '@/components/ui/Overlay';
+import { contacts } from '@/data/contacts.ts';
+import type { Contact } from '@/types/contact';
 
 type ContactsMenuProps = {
   isOpen: boolean;
@@ -12,6 +15,7 @@ type ContactsMenuProps = {
 
 export default function ContactsMenu({ isOpen, onClose }: ContactsMenuProps) {
   const menuRef = useRef<HTMLDivElement>(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
   // Lock body scroll when open
   useBodyScrollLock(isOpen);
@@ -24,6 +28,13 @@ export default function ContactsMenu({ isOpen, onClose }: ContactsMenuProps) {
 
   function handleSearch(query: string) {
     console.log('Searching contacts for:', query);
+    setSearchQuery(query);
+  }
+
+  function handleContactClick(contact: Contact) {
+    console.log('Contact clicked:', contact);
+    // Add your contact click logic here
+    // For example: start a chat, view profile, etc.
   }
 
   return (
@@ -37,6 +48,11 @@ export default function ContactsMenu({ isOpen, onClose }: ContactsMenuProps) {
       >
         <h1 className='text-2xl font-bold mb-4'>Contacts Menu</h1>
         <SearchInput onSearch={handleSearch} placeholder='Search Contacts' autoFocus />
+        <ContactsList
+          contacts={contacts}
+          searchQuery={searchQuery}
+          onContactClick={handleContactClick}
+        />
 
         <button
           onClick={onClose}
