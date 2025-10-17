@@ -5,7 +5,6 @@ export default function ContactsList({
   searchQuery,
   onContactClick,
 }: ContactsListProps) {
-  // Filter contacts based on search
   const filteredContacts = contacts.filter((contact) =>
     contact.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -16,19 +15,6 @@ export default function ContactsList({
 
   return (
     <div className='space-y-3'>
-      {/* Search Results Info */}
-      {searchQuery && (
-        <p className='text-sm text-gray-500 mb-4'>
-          Showing {filteredContacts.length} of {contacts.length} contacts
-          {searchQuery && (
-            <>
-              {' '}
-              for <span className='font-medium'>"{searchQuery}"</span>
-            </>
-          )}
-        </p>
-      )}
-
       {/* Contacts List */}
       {filteredContacts.length > 0 ? (
         <ul className='space-y-3'>
