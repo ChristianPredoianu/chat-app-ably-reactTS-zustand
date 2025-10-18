@@ -29,6 +29,7 @@ export default function DashboardPage() {
 
   return (
     <div className='min-h-screen bg-gradient-to-br from-slate-50 to-blue-50'>
+      {/* extract header to own component */}
       {/* Header */}
       <header className='bg-white/80 backdrop-blur-sm border-b border-gray-200/60 sticky top-0 z-40'>
         <div className='container mx-auto px-6'>
