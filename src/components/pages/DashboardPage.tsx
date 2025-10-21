@@ -37,13 +37,7 @@ export default function DashboardPage() {
             <div className='flex items-center space-x-4'>
               <Hamburger onClick={toggleContactsMenu} />
             </div>
-            <div className='flex-1 max-w-lg mx-8'>
-              <SearchInput
-                onSearch={handleSearch}
-                placeholder='Search contacts...'
-                debounceMs={300}
-              />
-            </div>
+
             <div className='flex items-center space-x-4'>
               <div className='w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full'></div>
             </div>
@@ -60,11 +54,18 @@ export default function DashboardPage() {
               <div className='bg-white rounded-2xl shadow-sm border border-gray-200/60 p-6'>
                 <div className='flex items-center justify-between mb-6'>
                   <h2 className='text-xl font-semibold text-gray-900'>Contacts</h2>
+
                   <span className='bg-blue-100 text-blue-800 text-sm px-2.5 py-1 rounded-full'>
                     {contacts.length}
                   </span>
                 </div>
-
+                <div className='w-full pb-8'>
+                  <SearchInput
+                    onSearch={handleSearch}
+                    placeholder='Search contacts...'
+                    debounceMs={300}
+                  />
+                </div>
                 <ContactsList
                   contacts={contacts}
                   onContactClick={handleDashboardContactClick}
