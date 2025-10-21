@@ -3,8 +3,7 @@ import useToggle from '@/hooks/ui/useToggle';
 import useCloseOnResize from '@/hooks/ui/useCloseOnResize';
 import ContactsMenu from '@/components/menus/ContactsMenu';
 import Header from '@/components/nav/Header';
-import SearchInput from '@/components/ui/SearchInput';
-import ContactsList from '@/components/lists/ContactList';
+import ContactsPanel from '@/components/panels/ContactsPanel';
 import { contacts } from '@/data/contacts';
 import type { Contact } from '@/types/contact';
 
@@ -30,36 +29,17 @@ export default function DashboardPage() {
   return (
     <div className='min-h-screen flex flex-col bg-gray-50'>
       <Header onMenuToggle={toggleContactsMenu} />
-
-      {/* Main Content - This will take remaining space */}
+      {/* Main Content */}
       <main className='flex-1 flex items-center justify-center container mx-auto px-6 py-8'>
         <div className='max-w-7xl mx-auto h-full'>
           <div className='grid grid-cols-1 lg:grid-cols-3 gap-8 h-full'>
             {/* Contacts Panel */}
-            <div className='lg:col-span-1'>
-              <div className='bg-white rounded-2xl shadow-sm border border-gray-200/60 p-6 h-full max-h-[calc(100vh-12rem)] flex flex-col'>
-                <div className='flex items-center justify-between mb-6'>
-                  <h2 className='text-xl font-semibold text-gray-900'>Contacts</h2>
-                  <span className='bg-blue-100 text-blue-800 text-sm px-2.5 py-1 rounded-full'>
-                    {contacts.length}
-                  </span>
-                </div>
-                <div className='w-full pb-4'>
-                  <SearchInput
-                    onSearch={handleSearch}
-                    placeholder='Search contacts...'
-                    debounceMs={300}
-                  />
-                </div>
-                <div className='flex-1 min-h-0'>
-                  <ContactsList
-                    contacts={contacts}
-                    onContactClick={handleDashboardContactClick}
-                    searchQuery={searchQuery}
-                  />
-                </div>
-              </div>
-            </div>
+            <ContactsPanel
+              contacts={contacts}
+              searchQuery={searchQuery}
+              onContactClick={handleDashboardContactClick}
+              onSearch={handleSearch}
+            />
 
             {/* Main Content Area */}
             <div className='lg:col-span-2'>
