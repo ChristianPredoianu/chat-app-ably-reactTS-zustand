@@ -14,7 +14,7 @@ export default function ContactsList({
   }
 
   return (
-    <div className='space-y-3'>
+    <div className='space-y-3 max-h-96 overflow-y-auto  '>
       {/* Contacts List */}
       {filteredContacts.length > 0 ? (
         <ul className='space-y-3'>
