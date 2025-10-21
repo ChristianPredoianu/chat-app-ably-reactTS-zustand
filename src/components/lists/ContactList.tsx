@@ -9,6 +9,8 @@ export default function ContactsList({
     contact.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const hasContacts = filteredContacts.length > 0;
+
   function handleContactClick(contact: Contact) {
     onContactClick?.(contact);
   }
@@ -16,7 +18,7 @@ export default function ContactsList({
   return (
     <div className='space-y-3 max-h-96 overflow-y-auto  '>
       {/* Contacts List */}
-      {filteredContacts.length > 0 ? (
+      {hasContacts ? (
         <ul className='space-y-3'>
           {filteredContacts.map((contact) => (
             <li
