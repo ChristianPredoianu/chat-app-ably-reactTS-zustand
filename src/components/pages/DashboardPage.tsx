@@ -1,11 +1,9 @@
-import { useState } from 'react';
 import useToggle from '@/hooks/ui/useToggle';
-import useCloseOnResize from '@/hooks/ui/useCloseOnResize';
 import ContactsMenu from '@/components/menus/ContactsMenu';
 import Header from '@/components/nav/Header';
 import ContactsPanel from '@/components/panels/ContactsPanel';
+import { useContactsPanel } from '@/hooks/panels/useContactPanel';
 import { contacts } from '@/data/contacts';
-import type { Contact } from '@/types/contact';
 
 export default function DashboardPage() {
   const {
@@ -14,17 +12,7 @@ export default function DashboardPage() {
     close: closeContactsMenu,
   } = useToggle(false);
 
-  const [searchQuery, setSearchQuery] = useState('');
-
-  useCloseOnResize(closeContactsMenu, 1024);
-
-  function handleDashboardContactClick(contact: Contact) {
-    console.log('Dashboard contact clicked:', contact);
-  }
-
-  function handleSearch(query: string) {
-    setSearchQuery(query);
-  }
+  const { searchQuery, handleContactClick, handleSearch } = useContactsPanel();
 
   return (
     <div className='min-h-screen flex flex-col bg-gray-50'>
@@ -37,7 +25,7 @@ export default function DashboardPage() {
             <ContactsPanel
               contacts={contacts}
               searchQuery={searchQuery}
-              onContactClick={handleDashboardContactClick}
+              onContactClick={handleContactClick}
               onSearch={handleSearch}
             />
 
