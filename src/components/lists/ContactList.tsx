@@ -1,10 +1,19 @@
+import LoadingSpinner from '@/components/ui/LoadingSpinner';
+import ErrorMessage from '@/components/ui/ErrorMessage';
 import type { Contact, ContactsListProps } from '@/types/contact';
+
+interface ExtendedContactsListProps extends ContactsListProps {
+  isLoading?: boolean;
+  error?: string | null;
+}
 
 export default function ContactsList({
   contacts,
   searchQuery,
   onContactClick,
-}: ContactsListProps) {
+  isLoading = false,
+  error = null,
+}: ExtendedContactsListProps) {
   const filteredContacts = contacts.filter((contact) =>
     contact.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -15,9 +24,13 @@ export default function ContactsList({
     onContactClick?.(contact);
   }
 
+  if (isLoading) return <LoadingSpinner />;
+
+  if (error) return <ErrorMessage message={error || 'An unknown error occured'} />;
+
+  // Main content
   return (
-    <div className='space-y-3 max-h-96 overflow-y-auto  '>
-      {/* Contacts List */}
+    <div className={`space-y-3 max-h-96 overflow-y-auto ${!hasContacts ? 'h-full' : ''}`}>
       {hasContacts ? (
         <ul className='space-y-3'>
           {filteredContacts.map((contact) => (
@@ -31,27 +44,53 @@ export default function ContactsList({
               </div>
               <div className='flex-1'>
                 <h3 className='font-semibold text-gray-900'>{contact.name}</h3>
+                {contact.email && (
+                  <p className='text-sm text-gray-500'>{contact.email}</p>
+                )}
+                <div className='flex items-center mt-1'>
+                  <span
+                    className={`w-2 h-2 rounded-full mr-2 ${
+                      contact.status === 'online'
+                        ? 'bg-green-500'
+                        : contact.status === 'away'
+                        ? 'bg-yellow-500'
+                        : 'bg-gray-400'
+                    }`}
+                  ></span>
+                  <span className='text-xs text-gray-500 capitalize'>
+                    {contact.status}
+                  </span>
+                </div>
               </div>
+              {contact.unreadCount && contact.unreadCount > 0 && (
+                <span className='bg-blue-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center'>
+                  {contact.unreadCount}
+                </span>
+              )}
             </li>
           ))}
         </ul>
       ) : (
-        <div className='text-center py-8 text-gray-500'>
-          <svg
-            className='w-12 h-12 mx-auto mb-3 text-gray-300'
-            fill='none'
-            stroke='currentColor'
-            viewBox='0 0 24 24'
-          >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              strokeWidth={1}
-              d='M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z'
-            />
-          </svg>
-          <p>No contacts found</p>
-          {searchQuery && <p className='text-sm'>Try adjusting your search terms</p>}
+        <div className='h-full flex items-center justify-center text-gray-500'>
+          <div className='text-center py-8'>
+            <svg
+              className='w-12 h-12 mx-auto mb-3 text-gray-300'
+              fill='none'
+              stroke='currentColor'
+              viewBox='0 0 24 24'
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth={1}
+                d='M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z'
+              />
+            </svg>
+            <p>No contacts found</p>
+            {searchQuery && (
+              <p className='text-sm mt-1'>Try adjusting your search terms</p>
+            )}
+          </div>
         </div>
       )}
     </div>
