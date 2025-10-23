@@ -1,11 +1,11 @@
 import type { ReactNode } from 'react';
 
-interface OverlayProps {
+type OverlayProps = {
   isVisible: boolean;
   onClick?: () => void;
   children?: ReactNode;
   className?: string;
-}
+};
 
 export default function Overlay({
   isVisible,
