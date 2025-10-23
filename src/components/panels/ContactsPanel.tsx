@@ -2,12 +2,12 @@ import SearchInput from '@/components/ui/SearchInput';
 import ContactsList from '@/components/lists/ContactList';
 import type { Contact } from '@/types/contact';
 
-interface ContactsPanelProps {
+type ContactsPanelProps = {
   contacts: Contact[];
   searchQuery: string;
   onContactClick: (contact: Contact) => void;
   onSearch: (query: string) => void;
-}
+};
 
 export default function ContactsPanel({
   contacts,
