@@ -14,9 +14,14 @@ export default function ContactsList({
   isLoading = false,
   error = null,
 }: ExtendedContactsListProps) {
-  const filteredContacts = contacts.filter((contact) =>
-    contact.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredContacts = contacts
+    .filter((contact) => contact.name.toLowerCase().includes(searchQuery.toLowerCase()))
+    .sort((a, b) => {
+      // Put 'online' first, then others
+      if (a.status === 'online' && b.status !== 'online') return -1;
+      if (a.status !== 'online' && b.status === 'online') return 1;
+      return 0; // keep relative order otherwise
+    });
 
   const hasContacts = filteredContacts.length > 0;
 
