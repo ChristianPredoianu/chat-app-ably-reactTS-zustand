@@ -1,4 +1,3 @@
-// components/pages/DashboardPage.tsx
 import { useState } from 'react';
 import useToggle from '@/hooks/ui/useToggle';
 import useCloseOnResize from '@/hooks/ui/useCloseOnResize';
