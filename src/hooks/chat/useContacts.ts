@@ -1,4 +1,3 @@
-// hooks/chat/useContacts.ts
 import { useState, useEffect, useRef } from 'react';
 import { useAbly } from 'ably/react';
 import { randomUserUrl } from '@/utils/api/urls';
