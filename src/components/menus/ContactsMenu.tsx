@@ -3,7 +3,7 @@ import useBodyScrollLock from '@/hooks/ui/useBodyScrollLock';
 import useEscapeKey from '@/hooks/ui/useEscapeKey';
 import useInert from '@/hooks/ui/useInert';
 import SearchInput from '@/components/ui/SearchInput';
-import ContactsList from '@components/lists/ContactList';
+import ContactsList from '@/components/lists/contact-list/ContactList';
 import Overlay from '@/components/ui/Overlay';
 import { contacts } from '@/data/contacts.ts';
 import type { Contact } from '@/types/contact';
