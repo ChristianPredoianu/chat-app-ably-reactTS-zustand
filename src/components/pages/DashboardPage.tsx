@@ -37,11 +37,9 @@ export default function DashboardPage() {
   return (
     <div className='min-h-screen flex flex-col bg-gray-50'>
       <Header onMenuToggle={toggleContactsMenu} />
-
       <main className='flex-1 flex items-center justify-center container mx-auto px-6 py-8'>
         <div className='max-w-7xl mx-auto h-full'>
           <div className='grid grid-cols-1 lg:grid-cols-3 gap-8 h-full'>
-            {/* Contacts Panel */}
             <div className='lg:col-span-1'>
               <ContactsPanel
                 contacts={contacts}
@@ -52,8 +50,6 @@ export default function DashboardPage() {
                 error={error}
               />
             </div>
-
-            {/* Main Content Area */}
             <div className='lg:col-span-2'>
               <div className='bg-white rounded-2xl shadow-sm border border-gray-200/60 p-8 h-full max-h-[calc(100vh-12rem)] flex flex-col'>
                 <ChatWelcomePanel onNewConversation={handleNewConversation} />
@@ -63,7 +59,6 @@ export default function DashboardPage() {
           </div>
         </div>
       </main>
-
       <ContactsMenu isOpen={isContactsMenuOpen} onClose={closeContactsMenu} />
     </div>
   );
