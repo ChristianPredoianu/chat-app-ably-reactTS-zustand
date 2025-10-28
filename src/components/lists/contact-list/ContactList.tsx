@@ -2,6 +2,7 @@ import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import ErrorMessage from '@/components/ui/ErrorMessage';
 import ContactListItem from '@/components/lists/contact-list/ContactListItem';
 import type { Contact, ContactsListProps } from '@/types/contact';
+import { IoMdContacts } from 'react-icons/io';
 
 type ExtendedContactsListProps = ContactsListProps & {
   isLoading?: boolean;
@@ -49,19 +50,7 @@ export default function ContactsList({
       ) : (
         <div className='h-full flex items-center justify-center text-gray-500'>
           <div className='text-center py-8'>
-            <svg
-              className='w-12 h-12 mx-auto mb-3 text-gray-300'
-              fill='none'
-              stroke='currentColor'
-              viewBox='0 0 24 24'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                strokeWidth={1}
-                d='M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z'
-              />
-            </svg>
+            <IoMdContacts className='text-2xl' />
             <p>No contacts found</p>
             {searchQuery && (
               <p className='text-sm mt-1'>Try adjusting your search terms</p>
