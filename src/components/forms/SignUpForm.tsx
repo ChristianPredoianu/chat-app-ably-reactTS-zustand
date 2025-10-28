@@ -20,7 +20,6 @@ export default function SignUpForm() {
 
   return (
     <form action={formAction} className='flex flex-col gap-4' noValidate>
-      {/* Email */}
       <TextInput
         label='Email Address'
         name='email'
@@ -38,7 +37,6 @@ export default function SignUpForm() {
         </div>
       )}
 
-      {/* Confirm Email */}
       <TextInput
         label='Confirm Email Address'
         name='confirmEmail'
@@ -58,7 +56,6 @@ export default function SignUpForm() {
         </div>
       )}
 
-      {/* Password */}
       <PasswordInput
         label='Password'
         name='password'
@@ -75,7 +72,6 @@ export default function SignUpForm() {
         </div>
       )}
 
-      {/* Confirm Password */}
       <PasswordInput
         label='Confirm Password'
         name='confirmPassword'
@@ -94,7 +90,6 @@ export default function SignUpForm() {
         </div>
       )}
 
-      {/* General error and success messages */}
       {state?.error && (
         <div className='text-red-500 text-sm text-center'>{state.error}</div>
       )}
