@@ -17,13 +17,8 @@ export default function ContactsMenu({ isOpen, onClose }: ContactsMenuProps) {
   const menuRef = useRef<HTMLDivElement>(null);
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Lock body scroll when open
   useBodyScrollLock(isOpen);
-
-  // Toggle inert when closed
   useInert(menuRef, isOpen);
-
-  // Close menu on Escape
   useEscapeKey(onClose, isOpen);
 
   function handleSearch(query: string) {
