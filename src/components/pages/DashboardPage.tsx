@@ -18,7 +18,6 @@ export default function DashboardPage() {
 
   const [searchQuery, setSearchQuery] = useState('');
 
-  // This should now work with just AblyProvider
   const { contacts, isLoading, error } = useContacts();
 
   useCloseOnResize(closeContactsMenu, 1024);
