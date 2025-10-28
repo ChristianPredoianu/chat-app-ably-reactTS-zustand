@@ -1,5 +1,6 @@
-import { CiSearch } from 'react-icons/ci';
 import { useState } from 'react';
+import { CiSearch } from 'react-icons/ci';
+import { IoMdClose } from 'react-icons/io';
 import type { InputHTMLAttributes } from 'react';
 
 type AdvancedSearchProps = InputHTMLAttributes<HTMLInputElement> & {
@@ -30,12 +31,13 @@ export default function AdvancedSearch({
     setQuery('');
     onSearch('');
   }
-
+  // YOU NEED TO USE TEXTINMPUT INSTEAD OF INPUT & PRIMARY BUTTON INSTEAD OF BUTTON
   return (
     <div className='relative w-full '>
       <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
         <CiSearch className='h-5 w-5 text-gray-400' />
       </div>
+
       <input
         type='text'
         value={query}
@@ -50,19 +52,7 @@ export default function AdvancedSearch({
           className='absolute inset-y-0 right-0 pr-3 flex items-center'
           aria-label='Clear search'
         >
-          <svg
-            className='h-4 w-4 text-gray-400 hover:text-gray-600'
-            fill='none'
-            viewBox='0 0 24 24'
-            stroke='currentColor'
-          >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              strokeWidth={2}
-              d='M6 18L18 6M6 6l12 12'
-            />
-          </svg>
+          <IoMdClose />
         </button>
       )}
     </div>
