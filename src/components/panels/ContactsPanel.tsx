@@ -1,5 +1,5 @@
 import SearchInput from '@/components/ui/SearchInput';
-import ContactsList from '@/components/lists/ContactList';
+import ContactsList from '@/components/lists/contact-list/ContactList';
 import type { Contact } from '@/types/contact';
 
 type ContactsPanelProps = {
