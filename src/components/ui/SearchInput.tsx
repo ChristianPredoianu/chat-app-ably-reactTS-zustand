@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import TextInput from '@/components/forms/TextInput';
 import { CiSearch } from 'react-icons/ci';
 import { IoMdClose } from 'react-icons/io';
 import type { InputHTMLAttributes } from 'react';
@@ -37,13 +38,12 @@ export default function AdvancedSearch({
       <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
         <CiSearch className='h-5 w-5 text-gray-400' />
       </div>
-
-      <input
-        type='text'
+      <TextInput
         value={query}
         onChange={handleChange}
-        className='block w-full pl-10 pr-10 py-2 border border-gray-300 rounded-lg leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
         placeholder={placeholder}
+        name='search'
+        label=''
         {...props}
       />
       {query && (
