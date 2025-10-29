@@ -10,7 +10,7 @@ type AdvancedSearchProps = InputHTMLAttributes<HTMLInputElement> & {
   debounceMs?: number;
 };
 
-export default function AdvancedSearch({
+export default function SearchInput({
   onSearch,
   placeholder = 'Search...',
   debounceMs = 300,
