@@ -48,14 +48,10 @@ export default function ContactsList({
           ))}
         </ul>
       ) : (
-        <div className='h-full flex items-center justify-center text-gray-500'>
-          <div className='text-center py-8'>
-            <IoMdContacts className='text-2xl' />
-            <p>No contacts found</p>
-            {searchQuery && (
-              <p className='text-sm mt-1'>Try adjusting your search terms</p>
-            )}
-          </div>
+        <div className='h-full bg-blue-500 flex flex-col items-center justify-center gap-y-1 text-gray-500'>
+          <IoMdContacts className='text-2xl' />
+          <p>No contacts found</p>
+          {searchQuery && <p className='text-sm mt-1'>Try adjusting your search terms</p>}
         </div>
       )}
     </div>
