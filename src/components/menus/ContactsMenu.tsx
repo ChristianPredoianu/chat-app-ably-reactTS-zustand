@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import ContactsPanel from '@/components/panels/ContactsPanel';
 import Overlay from '@/components/ui/Overlay';
+import CloseButton from '@/components/buttons/CloseButton';
 import useBodyScrollLock from '@/hooks/ui/useBodyScrollLock';
 import useEscapeKey from '@/hooks/ui/useEscapeKey';
 import useInert from '@/hooks/ui/useInert';
@@ -32,20 +33,22 @@ export default function ContactsMenu({ isOpen, onClose }: ContactsMenuProps) {
           isOpen ? 'translate-x-0' : '-translate-x-full'
         } w-full md:w-1/2 bg-white shadow-xl p-6`}
       >
-        <ContactsPanel
-          contacts={contacts}
-          searchQuery={searchQuery}
-          onContactClick={handleContactClick}
-          onSearch={handleSearch}
-          isLoading={isLoading}
-          error={error}
-        />
-        <button
+        <CloseButton
           onClick={onClose}
-          className='px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600'
-        >
-          Close
-        </button>
+          label='Close contacts menu'
+          size='lg'
+          className='mb-4 absolute right-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100'
+        />
+        <div className='mt-16'>
+          <ContactsPanel
+            contacts={contacts}
+            searchQuery={searchQuery}
+            onContactClick={handleContactClick}
+            onSearch={handleSearch}
+            isLoading={isLoading}
+            error={error}
+          />
+        </div>
       </aside>
     </>
   );
