@@ -32,7 +32,6 @@ export default function ContactsMenu({ isOpen, onClose }: ContactsMenuProps) {
           isOpen ? 'translate-x-0' : '-translate-x-full'
         } w-full md:w-1/2 bg-white shadow-xl p-6`}
       >
-        <h1 className='text-2xl font-bold mb-4'>Contacts Menu</h1>
         <ContactsPanel
           contacts={contacts}
           searchQuery={searchQuery}
