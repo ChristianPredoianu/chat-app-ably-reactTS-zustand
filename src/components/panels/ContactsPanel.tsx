@@ -20,7 +20,7 @@ export default function ContactsPanel({
   error = null,
 }: ContactsPanelProps) {
   return (
-    <div className='bg-white rounded-2xl shadow-sm border border-gray-200/60 p-6 h-full max-h-[calc(100vh-12rem)] flex flex-col'>
+    <div className='bg-white rounded-2xl shadow-sm border border-gray-200/60 p-6 h-full flex flex-col'>
       <div className='flex items-center justify-between mb-6'>
         <h2 className='text-xl font-semibold text-gray-900'>Contacts</h2>
         {!isLoading && !error && (
@@ -38,7 +38,8 @@ export default function ContactsPanel({
         />
       </div>
 
-      <div className='flex-1 min-h-0'>
+      {/* Consistent height area */}
+      <div className='flex-1 min-h-0 overflow-hidden'>
         <ContactsList
           contacts={contacts}
           onContactClick={onContactClick}
