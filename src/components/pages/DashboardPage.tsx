@@ -1,13 +1,12 @@
-import { useState } from 'react';
-import useToggle from '@/hooks/ui/useToggle';
-import useCloseOnResize from '@/hooks/ui/useCloseOnResize';
 import ContactsMenu from '@/components/menus/ContactsMenu';
 import Header from '@/components/nav/Header';
 import ContactsPanel from '@/components/panels/ContactsPanel';
 import ChatWelcomePanel from '@/components/panels/ChatWelcomePanel';
 import QuickStats from '@/components/stats/QuickStats';
 import { useContacts } from '@/hooks/chat/useContacts';
-import type { Contact } from '@/types/contact';
+import useToggle from '@/hooks/ui/useToggle';
+import useCloseOnResize from '@/hooks/ui/useCloseOnResize';
+import { useContactsPanel } from '@/hooks/panels/useContactsPanel';
 
 export default function DashboardPage() {
   const {
@@ -16,19 +15,11 @@ export default function DashboardPage() {
     close: closeContactsMenu,
   } = useToggle(false);
 
-  const [searchQuery, setSearchQuery] = useState('');
+  const { searchQuery, handleSearch, handleContactClick } = useContactsPanel();
 
   const { contacts, isLoading, error } = useContacts();
 
   useCloseOnResize(closeContactsMenu, 1024);
-
-  function handleDashboardContactClick(contact: Contact) {
-    console.log('Dashboard contact clicked:', contact);
-  }
-
-  function handleSearch(query: string) {
-    setSearchQuery(query);
-  }
 
   function handleNewConversation() {
     console.log('Create new conversation');
@@ -44,7 +35,7 @@ export default function DashboardPage() {
               <ContactsPanel
                 contacts={contacts}
                 searchQuery={searchQuery}
-                onContactClick={handleDashboardContactClick}
+                onContactClick={handleContactClick}
                 onSearch={handleSearch}
                 isLoading={isLoading}
                 error={error}
