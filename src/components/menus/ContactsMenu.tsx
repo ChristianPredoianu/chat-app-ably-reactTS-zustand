@@ -1,11 +1,11 @@
 import { useRef } from 'react';
+import ContactsPanel from '@/components/panels/ContactsPanel';
+import Overlay from '@/components/ui/Overlay';
 import useBodyScrollLock from '@/hooks/ui/useBodyScrollLock';
 import useEscapeKey from '@/hooks/ui/useEscapeKey';
 import useInert from '@/hooks/ui/useInert';
-import ContactsPanel from '@/components/panels/ContactsPanel';
 import { useContacts } from '@/hooks/chat/useContacts';
 import { useContactsPanel } from '@/hooks/panels/useContactsPanel';
-import Overlay from '@/components/ui/Overlay';
 
 type ContactsMenuProps = {
   isOpen: boolean;
