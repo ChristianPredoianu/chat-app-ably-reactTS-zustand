@@ -1,21 +1,33 @@
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import type { Contact } from '@/types/contact';
 
 export function useContactsPanel() {
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedContact, setSelectedContact] = useState<Contact | null>(null);
 
-  const handleContactClick = useCallback((contact: Contact) => {
-    console.log('Contact clicked:', contact);
-    // You can add more logic here that's shared across pages
-  }, []);
-
-  const handleSearch = useCallback((query: string) => {
+  function handleSearch(query: string) {
     setSearchQuery(query);
-  }, []);
+  }
+
+  function handleContactClick(contact: Contact) {
+    setSelectedContact(contact);
+    console.log('Contact clicked from hook:', contact);
+  }
+
+  function clearSelectedContact() {
+    setSelectedContact(null);
+  }
+
+  function clearSearch() {
+    setSearchQuery('');
+  }
 
   return {
     searchQuery,
-    handleContactClick,
+    selectedContact,
     handleSearch,
+    handleContactClick,
+    clearSelectedContact,
+    clearSearch,
   };
 }
