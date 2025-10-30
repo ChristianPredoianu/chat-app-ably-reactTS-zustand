@@ -8,7 +8,7 @@ type ChatWelcomePanelProps = {
 
 export default function ChatWelcomePanel({ onNewConversation }: ChatWelcomePanelProps) {
   return (
-    <div className='flex-1 flex items-center justify-center'>
+    <div className='flex-1 py-20 flex items-center justify-center'>
       <div className='text-center max-w-md mx-auto'>
         <div className='w-20 h-20 bg-gradient-to-r from-blue-100 to-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-6'>
           <IoChatbubbleEllipsesOutline className='text-2xl' />
