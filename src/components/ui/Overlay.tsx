@@ -20,7 +20,7 @@ export default function Overlay({
       className={`
         fixed inset-0 
         bg-gray-300
-        opacity-70
+        opacity-50
         backdrop-blur-sm
         z-40 
         transition-opacity duration-300
