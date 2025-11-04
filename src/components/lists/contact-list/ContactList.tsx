@@ -1,8 +1,8 @@
+import ContactListItem from '@/components/lists/contact-list/ContactListItem';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import ErrorMessage from '@/components/ui/ErrorMessage';
-import ContactListItem from '@/components/lists/contact-list/ContactListItem';
-import type { Contact, ContactsListProps } from '@/types/contact';
 import { IoMdContacts } from 'react-icons/io';
+import type { Contact, ContactsListProps } from '@/types/contact';
 
 type ExtendedContactsListProps = ContactsListProps & {
   isLoading?: boolean;
