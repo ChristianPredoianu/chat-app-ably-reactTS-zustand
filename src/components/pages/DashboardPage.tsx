@@ -4,9 +4,9 @@ import ContactsPanel from '@/components/panels/ContactsPanel';
 import ChatWelcomePanel from '@/components/panels/ChatWelcomePanel';
 import QuickStats from '@/components/stats/QuickStats';
 import NewConversationSheet from '@/components/panels/NewConversationSheet';
-import { useContacts } from '@/hooks/chat/useContacts';
 import useToggle from '@/hooks/ui/useToggle';
 import useCloseOnResize from '@/hooks/ui/useCloseOnResize';
+import { useContacts } from '@/hooks/chat/useContacts';
 import { useSearch } from '@/hooks/ui/useSearch';
 import { useContactsPanel } from '@/hooks/panels/useContactsPanel';
 
@@ -58,8 +58,6 @@ export default function DashboardPage() {
           </div>
         </div>
       </main>
-
-      {/* Bottom Sheet */}
       <NewConversationSheet
         isOpen={isSheetOpen}
         onClose={closeSheet}
