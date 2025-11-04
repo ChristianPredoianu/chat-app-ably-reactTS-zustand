@@ -12,7 +12,6 @@ export default function Header({ onMenuToggle }: HeaderProps) {
           <div className='flex items-center space-x-4'>
             <Hamburger onClick={onMenuToggle} />
           </div>
-
           <div className='flex items-center space-x-4'>
             <div className='w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full'></div>
           </div>
