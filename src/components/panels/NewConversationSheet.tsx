@@ -2,6 +2,7 @@ import { IoClose, IoChatbubbleEllipses } from 'react-icons/io5';
 import ContactsList from '@/components/lists/contact-list/ContactList';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import SearchInput from '@/components/ui/SearchInput';
+import Overlay from '@/components/ui/Overlay';
 import type { Contact } from '@/types/contact';
 
 type NewConversationSheetProps = {
@@ -15,7 +16,7 @@ type NewConversationSheetProps = {
 };
 
 export default function NewConversationSheet({
-  isOpen, // Add this
+  isOpen,
   onClose,
   onSearch,
   searchQuery,
@@ -23,17 +24,12 @@ export default function NewConversationSheet({
   onContactSelect,
   isLoading = false,
 }: NewConversationSheetProps) {
-  // Don't render anything if not open
   if (!isOpen) return null;
 
   return (
     <>
       {/* Overlay */}
-      <div
-        className='fixed inset-0 bg-black bg-opacity-40 z-40 backdrop-blur-sm transition-opacity duration-300'
-        onClick={onClose}
-      />
-
+      <Overlay isVisible={isOpen} onClick={onClose} />
       {/* Bottom Right Sheet */}
       <div className='fixed bottom-6 right-6 z-50 transform transition-all duration-300 ease-out'>
         <div className='bg-white rounded-2xl shadow-2xl w-96 max-h-[600px] flex flex-col border border-gray-200/80 backdrop-blur-sm'>
