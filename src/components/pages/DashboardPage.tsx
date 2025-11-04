@@ -3,6 +3,7 @@ import Header from '@/components/nav/Header';
 import ContactsPanel from '@/components/panels/ContactsPanel';
 import ChatWelcomePanel from '@/components/panels/ChatWelcomePanel';
 import QuickStats from '@/components/stats/QuickStats';
+import NewConversationSheet from '@/components/panels/NewConversationSheet';
 import { useContacts } from '@/hooks/chat/useContacts';
 import useToggle from '@/hooks/ui/useToggle';
 import useCloseOnResize from '@/hooks/ui/useCloseOnResize';
@@ -15,6 +16,8 @@ export default function DashboardPage() {
     close: closeContactsMenu,
   } = useToggle(false);
 
+  const { isOpen: isSheetOpen, open: openSheet, close: closeSheet } = useToggle();
+
   const { searchQuery, handleSearch, handleContactClick } = useContactsPanel();
 
   const { contacts, isLoading, error } = useContacts();
@@ -23,6 +26,7 @@ export default function DashboardPage() {
 
   function handleNewConversation() {
     console.log('Create new conversation');
+    openSheet();
   }
 
   return (
@@ -50,6 +54,17 @@ export default function DashboardPage() {
           </div>
         </div>
       </main>
+
+      {/* Bottom Sheet */}
+      <NewConversationSheet
+        isOpen={isSheetOpen}
+        onClose={closeSheet}
+        searchQuery={searchQuery}
+        contacts={contacts}
+        onContactSelect={handleContactClick}
+        onSearch={handleSearch}
+        isLoading={isLoading}
+      />
       <ContactsMenu isOpen={isContactsMenuOpen} onClose={closeContactsMenu} />
     </div>
   );
