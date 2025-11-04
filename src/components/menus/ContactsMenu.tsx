@@ -6,6 +6,7 @@ import useBodyScrollLock from '@/hooks/ui/useBodyScrollLock';
 import useEscapeKey from '@/hooks/ui/useEscapeKey';
 import useInert from '@/hooks/ui/useInert';
 import { useContacts } from '@/hooks/chat/useContacts';
+import { useSearch } from '@/hooks/ui/useSearch';
 import { useContactsPanel } from '@/hooks/panels/useContactsPanel';
 
 type ContactsMenuProps = {
@@ -18,7 +19,9 @@ export default function ContactsMenu({ isOpen, onClose }: ContactsMenuProps) {
 
   const { contacts, isLoading, error } = useContacts();
 
-  const { searchQuery, handleSearch, handleContactClick } = useContactsPanel();
+  const { value: mainSearchQuery, setValue: setMainSearchQuery } = useSearch();
+
+  const { handleContactClick } = useContactsPanel();
 
   useBodyScrollLock(isOpen);
   useInert(menuRef, isOpen);
@@ -42,9 +45,9 @@ export default function ContactsMenu({ isOpen, onClose }: ContactsMenuProps) {
         <div className='mt-16'>
           <ContactsPanel
             contacts={contacts}
-            searchQuery={searchQuery}
+            searchQuery={mainSearchQuery}
             onContactClick={handleContactClick}
-            onSearch={handleSearch}
+            onSearch={setMainSearchQuery}
             isLoading={isLoading}
             error={error}
           />
