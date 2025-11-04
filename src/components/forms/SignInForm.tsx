@@ -38,14 +38,12 @@ export default function SignInForm() {
           aria-describedby={state?.fieldErrors?.password ? 'password-error' : undefined}
         />
 
-        {/* Display error or success messages */}
         {state?.fieldErrors?.password && (
           <div id='password-error' className='text-red-500 text-sm -mt-2'>
             {state.fieldErrors.password}
           </div>
         )}
 
-        {/* General error message */}
         {state?.error && !state?.fieldErrors && (
           <div className='text-red-500 text-sm text-center'>{state.error}</div>
         )}
@@ -55,12 +53,10 @@ export default function SignInForm() {
         )}
         <span className='text-center py-4 text-blue-400 text-sm'>Forgot Password?</span>
 
-        {/* Disable button when pending */}
         <FormButton disabled={isPending}>
           {isPending ? 'Signing In...' : 'Sign In'}
         </FormButton>
       </form>
-      {/* Play as Guest button with proper spacing */}
       <FormButton>Play as Guest</FormButton>
     </div>
   );
