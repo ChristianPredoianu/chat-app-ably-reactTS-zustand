@@ -23,13 +23,10 @@ export default function ErrorState({
             <CgDanger className='text-2xl' />
           </div>
         </div>
-
         <h3 className='text-2xl font-semibold text-gray-900 mb-3'>{title}</h3>
         <p className='text-gray-600 mb-6'>{message}</p>
-
         <div className='flex flex-col sm:flex-row gap-3 justify-center'>
           {onRetry && <PrimaryButton onClick={onRetry}>Try Again</PrimaryButton>}
-
           {showHomeButton && (
             <Link
               to='/'
