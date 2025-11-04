@@ -7,6 +7,7 @@ import NewConversationSheet from '@/components/panels/NewConversationSheet';
 import { useContacts } from '@/hooks/chat/useContacts';
 import useToggle from '@/hooks/ui/useToggle';
 import useCloseOnResize from '@/hooks/ui/useCloseOnResize';
+import { useSearch } from '@/hooks/ui/useSearch';
 import { useContactsPanel } from '@/hooks/panels/useContactsPanel';
 
 export default function DashboardPage() {
@@ -18,7 +19,10 @@ export default function DashboardPage() {
 
   const { isOpen: isSheetOpen, open: openSheet, close: closeSheet } = useToggle();
 
-  const { searchQuery, handleSearch, handleContactClick } = useContactsPanel();
+  const { handleContactClick } = useContactsPanel();
+
+  const { value: mainSearchQuery, setValue: setMainSearchQuery } = useSearch();
+  const { value: sheetSearchQuery, setValue: setSheetSearchQuery } = useSearch();
 
   const { contacts, isLoading, error } = useContacts();
 
@@ -38,9 +42,9 @@ export default function DashboardPage() {
             <div className='lg:col-span-1 h-full'>
               <ContactsPanel
                 contacts={contacts}
-                searchQuery={searchQuery}
+                searchQuery={mainSearchQuery}
                 onContactClick={handleContactClick}
-                onSearch={handleSearch}
+                onSearch={setMainSearchQuery}
                 isLoading={isLoading}
                 error={error}
               />
@@ -59,10 +63,10 @@ export default function DashboardPage() {
       <NewConversationSheet
         isOpen={isSheetOpen}
         onClose={closeSheet}
-        searchQuery={searchQuery}
+        searchQuery={sheetSearchQuery}
         contacts={contacts}
         onContactSelect={handleContactClick}
-        onSearch={handleSearch}
+        onSearch={setSheetSearchQuery}
         isLoading={isLoading}
       />
       <ContactsMenu isOpen={isContactsMenuOpen} onClose={closeContactsMenu} />
