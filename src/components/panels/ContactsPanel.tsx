@@ -29,7 +29,6 @@ export default function ContactsPanel({
           </span>
         )}
       </div>
-
       <div className='w-full pb-4'>
         <SearchInput
           onSearch={onSearch}
@@ -37,8 +36,6 @@ export default function ContactsPanel({
           debounceMs={300}
         />
       </div>
-
-      {/* Consistent height area */}
       <div className='flex-1 min-h-0 overflow-hidden'>
         <ContactsList
           contacts={contacts}
