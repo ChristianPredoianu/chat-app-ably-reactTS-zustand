@@ -15,6 +15,7 @@ export default function useEscapeKey(callback: () => void, active = true) {
     };
 
     window.addEventListener('keydown', handleKeyDown);
+
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [callback, active]);
 }
