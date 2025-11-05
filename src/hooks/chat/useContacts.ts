@@ -89,7 +89,7 @@ export function useContacts() {
     fetchContacts();
   }, []);
 
-  const addContact = async (contact: Omit<Contact, 'id'>) => {
+  async function addContact(contact: Omit<Contact, 'id'>) {
     const newContact = {
       ...contact,
       id: `custom-${Date.now()}`,
@@ -101,7 +101,7 @@ export function useContacts() {
     }
 
     return newContact;
-  };
+  }
 
   return {
     contacts,
