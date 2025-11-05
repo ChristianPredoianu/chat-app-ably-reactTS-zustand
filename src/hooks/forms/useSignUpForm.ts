@@ -4,7 +4,9 @@ import type { SignUpState } from '@/types/auth';
 
 export function useSignUpForm() {
   const initialState: SignUpState = {};
+
   const [state, formAction, isPending] = useActionState(signUpAction, initialState);
+
   const [email, setEmail] = useState('');
   const [confirmEmail, setConfirmEmail] = useState('');
   const [password, setPassword] = useState('');
