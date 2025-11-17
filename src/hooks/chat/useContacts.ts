@@ -1,13 +1,20 @@
 import { useState, useEffect, useRef } from 'react';
 import { useAbly } from 'ably/react';
 import { randomUserUrl } from '@/utils/api/urls';
+import type { Types } from 'ably';
 import type { Contact } from '@/types/contact';
+
+type RandomUser = {
+  login: { uuid: string };
+  name: { first: string; last: string };
+  email: string;
+};
 
 export function useContacts() {
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const channelRef = useRef<any>(null);
+  const channelRef = useRef<Types.RealtimeChannelPromise | null>(null);
   const ably = useAbly();
 
   useEffect(() => {
@@ -53,28 +60,30 @@ export function useContacts() {
 
         const data = await response.json();
 
-        const contactsData: Contact[] = data.results.map((user: any, index: number) => {
-          const firstName = user.name.first;
-          const lastName = user.name.last;
-          const initials = `${firstName[0]}${lastName[0]}`.toUpperCase();
+        const contactsData: Contact[] = data.results.map(
+          (user: RandomUser, index: number) => {
+            const firstName = user.name.first;
+            const lastName = user.name.last;
+            const initials = `${firstName[0]}${lastName[0]}`.toUpperCase();
 
-          const statuses: Array<'online' | 'away' | 'offline'> = [
-            'online',
-            'away',
-            'offline',
-          ];
-          const status = statuses[index % 3];
+            const statuses: Array<'online' | 'away' | 'offline'> = [
+              'online',
+              'away',
+              'offline',
+            ];
+            const status = statuses[index % 3];
 
-          return {
-            id: user.login.uuid,
-            name: `${firstName} ${lastName}`,
-            avatar: initials,
-            email: user.email,
-            status: status,
-            lastSeen: status === 'offline' ? '2 hours ago' : undefined,
-            unreadCount: Math.random() > 0.7 ? Math.floor(Math.random() * 5) + 1 : 0,
-          };
-        });
+            return {
+              id: user.login.uuid,
+              name: `${firstName} ${lastName}`,
+              avatar: initials,
+              email: user.email,
+              status: status,
+              lastSeen: status === 'offline' ? '2 hours ago' : undefined,
+              unreadCount: Math.random() > 0.7 ? Math.floor(Math.random() * 5) + 1 : 0,
+            };
+          }
+        );
 
         console.log('Fetched contacts:', contactsData);
         setContacts(contactsData);
