@@ -1,9 +1,15 @@
-export interface User {
+export type User = {
   id: string;
   name: string;
   email: string;
   avatar?: string;
-}
+};
+
+export type UseAuthReturn = {
+  user: User | null;
+  isLoading: boolean;
+  checkAuth: () => Promise<void>;
+};
 
 export type SignInState = {
   error?: string;
