@@ -1,4 +1,5 @@
 import Hamburger from '@/components/ui/Hamburger';
+import PrimaryButton from '@/components/buttons/PrimaryButton';
 
 type HeaderProps = {
   onMenuToggle: () => void;
@@ -13,7 +14,7 @@ export default function Header({ onMenuToggle }: HeaderProps) {
             <Hamburger onClick={onMenuToggle} />
           </div>
           <div className='flex items-center space-x-4'>
-            <div className='w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full'></div>
+            <PrimaryButton>Sign Out</PrimaryButton>
           </div>
         </nav>
       </div>
