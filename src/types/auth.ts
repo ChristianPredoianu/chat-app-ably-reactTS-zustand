@@ -9,6 +9,7 @@ export type UseAuthReturn = {
   user: User | null;
   isLoading: boolean;
   checkAuth: () => Promise<void>;
+  signOut: () => Promise<{ success?: boolean; message?: string; error?: string }>;
 };
 
 export type SignInState = {
