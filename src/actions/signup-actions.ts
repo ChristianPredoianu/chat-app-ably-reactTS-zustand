@@ -1,5 +1,7 @@
 import type { SignUpState } from '@/types/auth';
 import { validateSignUpForm } from '@/utils/validation';
+import { account, ID } from '@/lib/appwrite';
+import { handleAuthError } from '@/utils/auth-error/authErrorHandler';
 
 export async function signUpAction(
   prevState: SignUpState,
@@ -20,12 +22,39 @@ export async function signUpAction(
   if (!isValid) return { ...prevState, fieldErrors };
 
   try {
-    // Your sign-up logic here
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    // Step 1: Create the user account
+    const user = await account.create({
+      userId: ID.unique(),
+      email: email,
+      password: password,
+      name: email.split('@')[0],
+    });
 
-    return { success: true, message: 'Account created successfully!' };
-  } catch (error) {
+    console.log('User created:', user);
+
+    // Step 2: Always create a session (don't try account.get() first)
+    console.log('Creating session...');
+    const session = await account.createEmailPasswordSession({
+      email: email,
+      password: password,
+    });
+    console.log('Session created:', session);
+
+    // Step 3: Now get the current user (should work with active session)
+    const currentUser = await account.get();
+    console.log('Current user:', currentUser);
+
+    return {
+      success: true,
+      message: 'Account created successfully!',
+      user: {
+        id: currentUser.$id,
+        name: currentUser.name,
+        email: currentUser.email,
+      },
+    };
+  } catch (error: unknown) {
     console.error('Sign up error:', error);
-    return { error: 'Something went wrong. Please try again.' };
+    return handleAuthError(error);
   }
 }
