@@ -1,5 +1,7 @@
-import type { SignInState } from '@/types/auth';
+import { account } from '@/lib/appwrite';
 import { validateSignInForm } from '@/utils/validation';
+import { handleAuthError } from '@/utils/auth-error/authErrorHandler';
+import type { SignInState } from '@/types/auth';
 
 // Action function that handles form submission
 export async function signInAction(
@@ -15,26 +17,32 @@ export async function signInAction(
   // If there are field errors, return early
   if (!isValid) return { ...prevState, fieldErrors };
 
+  async function signUserIn() {
+    const session = await account.createEmailPasswordSession({
+      email: email,
+      password: password,
+    });
+
+    console.log('Session created:', session);
+    // Get user details
+    const user = await account.get();
+
+    console.log('User signed in:', user);
+
+    return {
+      success: true,
+      message: 'Signed in successfully!',
+      user: {
+        id: user.$id,
+        name: user.name,
+        email: user.email,
+      },
+    };
+  }
+
   try {
-    // Your sign-in logic here (API call, authentication, etc.)
-    // Example:
-    // const response = await fetch('/api/auth/signin', {
-    //   method: 'POST',
-    //   body: formData,
-    // });
-
-    // if (!response.ok) {
-    //   return { error: 'Invalid credentials' };
-    // }
-
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    // On success
-    return { success: true, message: 'Signed in successfully!' };
+    return await signUserIn();
   } catch (error) {
-    if (error instanceof Error) return { error: error.message };
-
-    return { error: 'Something went wrong. Please try again.' };
+    return handleAuthError(error);
   }
 }
