@@ -6,10 +6,6 @@ export function useAuth(): UseAuthReturn {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    checkAuth();
-  }, []);
-
   async function checkAuth() {
     try {
       const userData = await account.get();
@@ -20,16 +16,31 @@ export function useAuth(): UseAuthReturn {
       });
     } catch (error: any) {
       setUser(null);
-
       if (error?.code !== 401) console.error('Auth check error:', error);
     } finally {
       setIsLoading(false);
     }
   }
 
+  async function signOut() {
+    try {
+      await account.deleteSession('current');
+      setUser(null);
+      return { success: true, message: 'Signed out successfully' };
+    } catch (error: any) {
+      console.error('Sign out error:', error);
+      return { error: error.message || 'Failed to sign out' };
+    }
+  }
+
+  useEffect(() => {
+    checkAuth();
+  }, []);
+
   return {
     user,
     isLoading,
     checkAuth,
+    signOut, // Add signOut to the return object
   };
 }
