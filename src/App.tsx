@@ -1,7 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
-import LoginPage from '@/components/pages/LoginPage';
-import DashboardPage from '@/components/pages/DashboardPage';
-import ErrorPage from '@/components/pages/ErrorPage';
+import LoginPage from '@/pages/LoginPage';
+
+import DashboardPage from '@/pages/DashboardPage';
+import ErrorPage from '@/pages/ErrorPage';
 
 export default function App() {
   return (
