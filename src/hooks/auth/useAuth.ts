@@ -16,7 +16,10 @@ export function useAuth(): UseAuthReturn {
       });
     } catch (error: any) {
       setUser(null);
-      if (error?.code !== 401) console.error('Auth check error:', error);
+
+      if (error?.code !== 401) {
+        console.error('Auth check error:', error);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -24,7 +27,7 @@ export function useAuth(): UseAuthReturn {
 
   async function signOut() {
     try {
-      await account.deleteSession('current');
+      await account.deleteSessions();
       setUser(null);
       return { success: true, message: 'Signed out successfully' };
     } catch (error: any) {
@@ -41,6 +44,6 @@ export function useAuth(): UseAuthReturn {
     user,
     isLoading,
     checkAuth,
-    signOut, // Add signOut to the return object
+    signOut,
   };
 }
