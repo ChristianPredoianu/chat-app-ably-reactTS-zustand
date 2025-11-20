@@ -13,6 +13,7 @@ export type UseAuthReturn = {
 };
 
 export type SignInState = {
+  user: User | null;
   error?: string;
   success?: boolean;
   message?: string;
