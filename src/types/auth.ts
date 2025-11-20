@@ -1,3 +1,10 @@
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  avatar?: string;
+}
+
 export type SignInState = {
   error?: string;
   success?: boolean;
@@ -22,7 +29,9 @@ export type SignUpState = {
     confirmEmail?: string;
     password?: string;
     confirmPassword?: string;
+    name?: string;
   };
+  user?: User;
 };
 
 export type SignUpFieldErrors = {
