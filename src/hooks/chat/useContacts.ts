@@ -18,11 +18,9 @@ export function useContacts() {
   const ably = useAbly();
 
   useEffect(() => {
-    // Set up the channel manually
     const channel = ably.channels.get('contacts');
     channelRef.current = channel;
 
-    // Subscribe to messages
     channel.subscribe('contact-update', (message) => {
       console.log('Received Ably message:', message);
       switch (message.name) {
@@ -47,7 +45,6 @@ export function useContacts() {
     };
   }, [ably]);
 
-  // Fetch contacts from RandomUser.me API
   useEffect(() => {
     async function fetchContacts() {
       try {
@@ -104,7 +101,6 @@ export function useContacts() {
       id: `custom-${Date.now()}`,
     };
 
-    // Publish to the channel
     if (channelRef.current) {
       await channelRef.current.publish('contact-added', newContact);
     }
