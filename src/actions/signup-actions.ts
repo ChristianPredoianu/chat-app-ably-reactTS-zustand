@@ -1,7 +1,7 @@
-import type { SignUpState } from '@/types/auth';
 import { validateSignUpForm } from '@/utils/validation';
 import { account, ID } from '@/lib/appwrite';
 import { handleAuthError } from '@/utils/auth-error/authErrorHandler';
+import type { SignUpState } from '@/types/auth';
 
 export async function signUpAction(
   prevState: SignUpState,
