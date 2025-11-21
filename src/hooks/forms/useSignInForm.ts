@@ -16,7 +16,6 @@ export function useSignInForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // Navigate to dashboard after successful sign in
   useEffect(() => {
     if (state.success && state.user) {
       navigate(`/dashboard/${state.user.id}`);
