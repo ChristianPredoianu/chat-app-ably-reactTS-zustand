@@ -28,7 +28,7 @@ export async function signInAction(
     });
 
     console.log('Session created:', session);
-    // Get user details
+
     const user = await account.get();
     console.log('User signed in:', user);
 
