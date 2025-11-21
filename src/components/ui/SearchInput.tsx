@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { CiSearch } from 'react-icons/ci';
 import CloseButton from '@/components/buttons/CloseButton';
+import { CiSearch } from 'react-icons/ci';
 import type { InputHTMLAttributes } from 'react';
 
 type SearchInputProps = InputHTMLAttributes<HTMLInputElement> & {
