@@ -18,9 +18,7 @@ export default function ContactsMenu({ isOpen, onClose }: ContactsMenuProps) {
   const menuRef = useRef<HTMLDivElement>(null);
 
   const { contacts, isLoading, error } = useContacts();
-
   const { value: mainSearchQuery, setValue: setMainSearchQuery } = useSearch();
-
   const { handleContactClick } = useContactsPanel();
 
   useBodyScrollLock(isOpen);
