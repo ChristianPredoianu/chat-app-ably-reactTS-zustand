@@ -17,7 +17,6 @@ export function useSignUpForm() {
 
   useEffect(() => {
     if (state.success && state.user) {
-      // Navigate to dashboard with username
       navigate(`/dashboard/${state.user.name || state.user.id}`);
     }
   }, [state.success, state.user, navigate]);
