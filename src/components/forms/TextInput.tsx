@@ -1,5 +1,5 @@
-import type { InputHTMLAttributes } from 'react';
 import { FaRegUserCircle } from 'react-icons/fa';
+import type { InputHTMLAttributes } from 'react';
 
 type TextInputProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string;
