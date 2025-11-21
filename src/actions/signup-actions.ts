@@ -22,7 +22,6 @@ export async function signUpAction(
   if (!isValid) return { ...prevState, fieldErrors };
 
   try {
-    // Step 1: Create the user account
     const user = await account.create({
       userId: ID.unique(),
       email: email,
@@ -32,7 +31,6 @@ export async function signUpAction(
 
     console.log('User created:', user);
 
-    // Step 2: Always create a session (don't try account.get() first)
     console.log('Creating session...');
     const session = await account.createEmailPasswordSession({
       email: email,
@@ -40,7 +38,6 @@ export async function signUpAction(
     });
     console.log('Session created:', session);
 
-    // Step 3: Now get the current user (should work with active session)
     const currentUser = await account.get();
     console.log('Current user:', currentUser);
 
