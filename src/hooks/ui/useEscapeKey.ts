@@ -10,9 +10,9 @@ export default function useEscapeKey(callback: () => void, active = true) {
   useEffect(() => {
     if (!active) return;
 
-    const handleKeyDown = (e: KeyboardEvent) => {
+    function handleKeyDown(e: KeyboardEvent) {
       if (e.key === 'Escape') callback();
-    };
+    }
 
     window.addEventListener('keydown', handleKeyDown);
 
