@@ -1,8 +1,8 @@
-import { IoClose, IoChatbubbleEllipses } from 'react-icons/io5';
 import ContactsList from '@/components/lists/contact-list/ContactList';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import SearchInput from '@/components/ui/SearchInput';
 import Overlay from '@/components/ui/Overlay';
+import { IoClose, IoChatbubbleEllipses } from 'react-icons/io5';
 import type { Contact } from '@/types/contact';
 
 type NewConversationSheetProps = {
