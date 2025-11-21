@@ -1,10 +1,10 @@
 import { Outlet, useParams, Navigate } from 'react-router-dom';
-import { useAuth } from '@/hooks/auth/useAuth';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
+import { useAuth } from '@/hooks/auth/useAuth';
 
 export default function ProtectedLayout() {
   const { user, isLoading } = useAuth();
-  const { userId } = useParams(); // Get userId from URL params
+  const { userId } = useParams();
 
   if (isLoading) {
     return (
@@ -16,14 +16,13 @@ export default function ProtectedLayout() {
 
   if (!user) return <Navigate to='/' replace />;
 
-  // Add user ID verification here
   if (userId && userId !== user.id) {
     return <Navigate to={`/dashboard/${user.id}`} replace />;
   }
 
   return (
     <div className='min-h-screen bg-gray-50'>
-      <Outlet /> {/* This renders the nested protected pages */}
+      <Outlet />
     </div>
   );
 }
