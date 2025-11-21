@@ -16,7 +16,6 @@ export default function useCloseOnResize(
 
     window.addEventListener('resize', handleResize);
 
-    // Call it initially in case the window is already >= breakpoint
     handleResize();
 
     return () => window.removeEventListener('resize', handleResize);
