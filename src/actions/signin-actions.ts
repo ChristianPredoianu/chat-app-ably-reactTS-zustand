@@ -3,19 +3,23 @@ import { validateSignInForm } from '@/utils/validation';
 import { handleAuthError } from '@/utils/auth-error/authErrorHandler';
 import type { SignInState } from '@/types/auth';
 
-// Action function that handles form submission
 export async function signInAction(
   prevState: SignInState,
   formData: FormData
 ): Promise<SignInState> {
-  // Extract form data
   const email = formData.get('email') as string;
   const password = formData.get('password') as string;
 
   const { fieldErrors, isValid } = validateSignInForm(email, password);
 
   // If there are field errors, return early
-  if (!isValid) return { ...prevState, fieldErrors };
+  if (!isValid)
+    return {
+      ...prevState,
+      user: null,
+      fieldErrors,
+      success: false,
+    };
 
   async function signUserIn() {
     const session = await account.createEmailPasswordSession({
@@ -26,7 +30,6 @@ export async function signInAction(
     console.log('Session created:', session);
     // Get user details
     const user = await account.get();
-
     console.log('User signed in:', user);
 
     return {
@@ -43,6 +46,9 @@ export async function signInAction(
   try {
     return await signUserIn();
   } catch (error) {
-    return handleAuthError(error);
+    return {
+      user: null,
+      ...handleAuthError(error),
+    };
   }
 }
