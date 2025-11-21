@@ -3,7 +3,6 @@ import { AblyProvider } from 'ably/react';
 import { Realtime } from 'ably';
 import type { ReactNode } from 'react';
 
-// Vite uses import.meta.env instead of process.env
 const getAblyClient = () => {
   if (typeof window === 'undefined') return null as any;
 
